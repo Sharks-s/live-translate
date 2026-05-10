@@ -1,45 +1,78 @@
-# live-translate
+🎙️ AI Media Translator
+A powerful toolset to translate any audio into Vietnamese subtitles using Whisper (via Groq) and Gemini 2.0 Flash (via OpenRouter).
 
-Translate anything playing on your screen in real-time. Powered by Whisper + Gemini. (~3s latency)
+🚀 Features
+This project offers two distinct ways to translate content:
 
-## What it does
+Live Translator (live_translator.py):
 
-Captures your system audio → transcribes with Whisper → translates via Gemini → shows as a floating overlay with the original text and translation side by side.
+Captures system audio in real-time.
 
-Works with any audio source — videos, meetings, podcasts, etc.
+Displays a floating, transparent overlay on your screen.
 
-## Requirements
+~3s latency – perfect for live streams, meetings, or games.
 
-- Python 3.8+
-- Two free API keys:
-  - **Groq** (Whisper) → https://console.groq.com
-  - **OpenRouter** (Gemini) → https://openrouter.ai
+YouTube Video Processor (yt_video_translator.py):
 
-## Setup
+Downloads videos directly from YouTube links (720p).
 
-```bash
-git clone https://github.com/yourusername/live-translate
-cd live-translate
-uv venv && uv pip install -r requirements.txt
-```
+Uses context-aware AI to translate the entire video at once.
 
-Open `main.py` and add your keys:
+Generates a high-quality .mp4 file with Bilingual Letterboxing (Original text and Vietnamese subtitles placed in a black bar below the video).
 
-```python
-GROQ_API_KEY = "your_groq_api_key_here"
-OPENROUTER_API_KEY = "your_openrouter_api_key_here"
-```
+🛠️ Requirements
+Python 3.10+
 
-## Run
+FFmpeg: Required for audio extraction and video merging.
 
-```bash
-uv run main.py
-```
+API Keys:
 
-## Change language
+Groq Cloud (Whisper-v3)
 
-Edit this line in `main.py`:
+OpenRouter (Gemini 2.0 Flash)
 
-```python
-"content": "Translate to natural Vietnamese. Return ONLY the translation, no explanation."
-```
+📥 Installation
+Bash
+
+# Clone the repository
+
+git clone https://github.com/yourusername/ai-media-translator.git
+cd ai-media-translator
+
+# Install dependencies (using uv for speed)
+
+uv pip install -r requirements.txt
+⚙️ Configuration
+Open both .py files and insert your API keys:
+
+Python
+GROQ_API_KEY = "your_groq_key"
+OPENROUTER_API_KEY = "your_openrouter_key"
+🎮 Usage
+Option A: Live Screen Translation
+Best for live content where you need immediate subtitles.
+
+Bash
+uv run live_translator.py
+Option B: YouTube Subtitle Burn-in
+Best for watching foreign videos with perfect, non-blocking bilingual subtitles.
+
+Bash
+uv run yt_translator.py
+Paste the YouTube URL.
+
+Enter a Project Folder name.
+
+Enter the Output File name.
+
+Wait for the AI to "cook" your video!
+
+📂 Project Structure
+Plaintext
+.
+├── live_translator.py # Real-time system audio overlay
+├── yt_translator.py # YouTube downloader & subtitle burner
+├── requirements.txt # Project dependencies
+└── README.md # Documentation
+📝 License
+MIT License - Feel free to use and modify!
